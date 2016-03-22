@@ -18,6 +18,5 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.use_transactional_fixtures = true
-
-  config.include Devise::TestHelpers
 end
+

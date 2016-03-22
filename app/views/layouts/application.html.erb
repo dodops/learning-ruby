@@ -1,65 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= content_for?(:title) ? yield(:title) : "Ruby Sem Zika" %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%- if user_signed_in? %> 
-  <!-- Barra de navegação -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">Ruby Zika</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Participe" %></li>
-              <li><%= link_to "Sobre o projeto" %></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <% if user_signed_in? %>
-                <li id="photo"><%= image_tag attachment_url(current_user, :profile_image, :fill, 30, 30) %></li>
-                <!-- <li>Logged as <strong><%= current_user.email %></li> -->
-                <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              <% else %>
-                <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-                <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Ruby Sem Zika" %></title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="hold-transition skin-purple layout-top-nav">
+    <div class="wrapper">
+      <% if user_signed_in? %> 
+        <%= render 'layouts/header' %>
+      <% end %>
+        <div class="content-wrapper">
+          <div class="container">
+            <section class="content">
+              <% if notice %>
+                <p class="alert alert-success"><%= notice %></p>
               <% end %>
-            </ul>
+              <% if alert %>
+                <p class="alert alert-danger"><%= alert %></p>
+              <% end %>
+              <%= yield %>
+            </section>
           </div>
         </div>
-      </div>
+        <%= render 'layouts/footer' %>
     </div>
-<% end %>    
-  <div class="container">
-    
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-
-
-    <%= yield %>
-
-    
-  </div>
-</body>
+  </body>
 </html>

@@ -1,0 +1,39 @@
+modulejs.define('ui/facebook', function(){
+	var facebook = function() {
+		$('body').prepend('<div id="fb-root"></div>');
+
+		$.ajax({
+			url: window.location.protocol + "//connect.facebook.net/en_US/sdk.js",
+			dataType: 'script',
+			cache: true
+		});
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId: <%= ENV['FACEBOOK_ID'] %>,
+				cookie: true,
+				version: 'v2.2'
+			});
+
+			$(".sign_in").click(function(e){
+				e.preventDefault();
+				FB.login(function(response){
+					if (response.authResponse) {
+						return window.location = '/users/auth/facebook/callback';
+					}
+				});
+			});
+
+			$(".sign_out").click(function(e){
+				FB.getLoginStatus(function(response){
+					if (response.authResponse) {
+						return FB.logout();
+					}
+				});
+			});
+		};
+	};
+
+	return facebook();
+});
+

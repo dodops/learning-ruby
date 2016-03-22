@@ -1,33 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Denuncias de foco</h1>
+<div class="box">
+	<div class="box-header with-border">
+		<h2 class="title">Denuncias de foco</h2>
+	</div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Endereço</th>
-      <th>CEP</th>
-      <th>Estado</th>
-      <th>Cidade</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	<div class="box-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Endereço</th>
+					<th>CEP</th>
+					<th>Estado</th>
+					<th>Cidade</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
 
-  <tbody>
-    <% @complaints.each do |complaint| %>
-      <tr>
-        <td><%= complaint.address %></td>
-        <td><%= complaint.cep %></td>
-        <td><%= complaint.state.name %></td>
-        <td><%= complaint.city.name %></td>
-        <td><%= link_to 'Ver', complaint %></td>
-        <td><%= link_to 'Editar', edit_complaint_path(complaint) %></td>
-        <td><%= link_to 'Deletar', complaint, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+			<tbody>
+				<% @complaints.each do |complaint| %>
+					<tr>
+						<td><%= complaint.address %></td>
+						<td><%= complaint.cep %></td>
+						<td><%= complaint.state.name %></td>
+						<td><%= complaint.city.name %></td>
+						<td><%= link_to 'Ver', complaint %></td>
+						<td><%= link_to 'Editar', edit_complaint_path(complaint) %></td>
+						<td><%= link_to 'Deletar', complaint, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 <%= link_to 'Nova Denuncia', new_complaint_path %>
+

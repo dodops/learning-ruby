@@ -4,12 +4,11 @@ ruby '2.3.0'
 
 gem 'bundler', '>= 1.9.7'
 
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.6'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.4'
-gem 'pundit', '~> 1.0.1'
 gem 'simple_form', '~> 3.2.1'
 
 # Database
@@ -17,7 +16,7 @@ gem 'pg'
 
 # Geoserver adapter
 gem 'activerecord-postgis-adapter', '~> 3.1.4'
-gem 'rgeo', '~> 0.5.2'
+gem 'rgeo', '~> 0.5.3'
 
 # A.C.L layer
 gem 'devise', '~>3.5.6'
@@ -36,6 +35,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-font-awesome', '~> 4.5.0'
   gem 'rails-assets-bootstrap-sass', '~> 3.3.6'
   gem 'rails-assets-modulejs', '~> 1.13.0'
+  gem 'rails-assets-bootstrap-filestyle', '~> 1.2.1'
+  gem 'rails-assets-adminlte'
 end
 
 group :development, :test do

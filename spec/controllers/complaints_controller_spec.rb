@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 describe ComplaintsController do
-  before(:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in FactoryGirl.create(:user)
-  end
+  login_user
 
   let(:city) { create(:city) }
 
@@ -162,3 +159,4 @@ describe ComplaintsController do
   end
 
 end
+
