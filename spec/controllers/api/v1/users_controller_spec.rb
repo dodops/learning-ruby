@@ -1,11 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::UsersController do
-  before(:each) do
-    request.headers['Accept'] = "application/vnd.brasilsemzika.v1, #{Mime::JSON}"
-    request.headers['Content-Type'] = Mime::JSON.to_s
-  end
-
+describe Api::V1::UsersController, api: true do
   describe "GET #show" do
     before :each do
       @user = create(:user)
