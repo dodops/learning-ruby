@@ -1,10 +1,21 @@
 class User < ActiveRecord::Base
+
+  before_create :generate_authentication_token!
+
+  validates_uniqueness_of :auth_token
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          # LogIn/SignUp via facebook, inicialmente
          :omniauthable, omniauth_providers: [:facebook]
 
   attachment :profile_image
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
+  end
 
   def password_required?
     super && provider.blank?
