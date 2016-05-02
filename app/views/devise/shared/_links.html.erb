@@ -1,18 +1,18 @@
 <%- if devise_mapping.omniauthable? %>
 	<%- resource_class.omniauth_providers.each do |provider| %>
 		<%= link_to t('devise.shared.links.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)),
-			omniauth_authorize_path(resource_name, provider), class: "sign_in btn btn-info btn-block"%>
+			omniauth_authorize_path(resource_name, provider), class: "sign_in btn btn-block btn-social btn-facebook" %>
 	<% end -%>
 <% end -%>
 
 <%- if controller_name != 'sessions' %>
 	<%= link_to t('devise.shared.links.sign_in'), new_session_path(resource_name),
-		class: "btn btn-success btn-block"%>
+		class: "btn btn-block btn-social btn-primary"%>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
 	<%= link_to t('devise.shared.links.sign_up'), new_registration_path(resource_name),
-		class: "btn btn-success btn-block" %>
+		class: "btn btn-block btn-social btn-primary" %>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
