@@ -15,6 +15,10 @@ module Request
       request.headers['Content-Type'] = format.to_s
     end
 
+    def api_authorization_header(token)
+      request.headers['Authorization'] = token
+    end
+
     def include_default_accept_headers
       api_header
       api_response_format
@@ -26,7 +30,7 @@ end
 RSpec.configure do |config|
   config.include Request::JsonHelpers, type: :controller
   config.include Request::HeadersHelpers, type: :controller
-  
+
   config.before(:each, type: :controller, api: true) do
     include_default_accept_headers
   end

@@ -35,7 +35,7 @@ describe Api::V1::SessionsController, api: true do
   describe "DELETE #destroy" do
     before(:each) do
       @user = create :user
-      sign_in @user, store: false
+      sign_in @user
       delete :destroy, id: @user.auth_token
     end
 

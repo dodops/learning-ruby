@@ -51,6 +51,11 @@ describe Api::V1::UsersController, api: true do
   end
 
   describe "PATCH #update" do
+    before(:each) do
+      @user = create :user
+      api_authorization_header @user.auth_token
+    end
+
     context "when is successfully updated" do
       before(:each) do
         @user = create :user
@@ -88,7 +93,8 @@ describe Api::V1::UsersController, api: true do
   describe "DELETE #destroy" do
     before(:each) do
       @user = create :user
-      delete :destroy, id: @user.id
+      api_authorization_header @user.auth_token
+      delete :destroy, id: @user.auth_token
     end
 
     it { should respond_with 204 }
