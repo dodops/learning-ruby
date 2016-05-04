@@ -9,7 +9,7 @@ RSpec.describe Api::V1::ComplaintsController, type: :controller do
     end
 
     it "returns the information about a reporter on a hash" do
-      complaint_response = json_response
+      complaint_response = json_response[:complaint]
       expect(complaint_response[:id]).to eq complaint.id
     end
 
