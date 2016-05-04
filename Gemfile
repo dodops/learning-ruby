@@ -45,6 +45,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.1.0'
   gem 'rubocop', '~> 0.37.2'
   gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-collection_matchers', '~> 1.1'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails' ,'~> 4.6'
   gem 'capybara', '~> 2.6.2'
