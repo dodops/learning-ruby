@@ -4,6 +4,6 @@ class Api::V1::ComplaintsController < ApiController
   end
 
   def index
-    render json: { complaints: Complaint.all }
+    render json: Complaint.all
   end
 end
