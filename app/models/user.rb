@@ -13,7 +13,10 @@ class User < ActiveRecord::Base
 
   def generate_authentication_token!
     begin
-      self.auth_token = Devise.friendly_token
+      sort_array = [*(1..9), *('A'..'Z'), *('a'..'z')].flatten
+      token = ""
+      50.times { token += sort_array.sample.to_s }
+      self.auth_token = token
     end while self.class.exists?(auth_token: auth_token)
   end
 

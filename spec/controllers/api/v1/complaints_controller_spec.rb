@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ComplaintsController, type: :controller do
+  before(:each) do
+    @user = create :user
+    @user.generate_authentication_token!
+    include_default_accept_headers
+    api_authorization_header @user.auth_token
+  end
+
   describe "GET #show" do
     let(:complaint) { create :complaint }
 
@@ -8,7 +15,7 @@ RSpec.describe Api::V1::ComplaintsController, type: :controller do
       get :show, id: complaint.id
     end
 
-    it "returns the information about a reporter on a hash" do
+    it "returns the information about a complaint on a hash" do
       complaint_response = json_response[:complaint]
       expect(complaint_response[:address]).to eq complaint.address
     end

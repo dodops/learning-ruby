@@ -10,15 +10,8 @@ describe User do
 
   describe "#generate_authentication_token!" do
     it "generates a unique token" do
-      Devise.stub(:friendly_token).and_return("auniquetoken123")
-      subject.generate_authentication_token!
-      expect(subject.auth_token).to eq "auniquetoken123"
-    end
-
-    it "generates another token when one already has been taken" do
-      existing_user = create(:user, auth_token: 'auniquetoken123')
-      subject.generate_authentication_token!
-      expect(subject.auth_token).to_not eq existing_user.auth_token
+      user = create(:user)
+      expect(user.auth_token).to_not be_nil
     end
   end
 
