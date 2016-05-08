@@ -6,18 +6,15 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         # LogIn/SignUp via facebook, inicialmente
          :omniauthable, omniauth_providers: [:facebook]
 
   attachment :profile_image
 
   def generate_authentication_token!
-    begin
-      sort_array = [*(1..9), *('A'..'Z'), *('a'..'z')].flatten
-      token = ""
-      50.times { token += sort_array.sample.to_s }
-      self.auth_token = token
-    end while self.class.exists?(auth_token: auth_token)
+    self.auth_token = loop do
+      token = SecureRandom.urlsafe_base64
+      break token unless self.class.exists?(auth_token: token)
+    end
   end
 
   def password_required?
