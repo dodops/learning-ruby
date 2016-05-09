@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= t('devise.registrations.edit.title', resource: current_user.first_name) %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
   <%= f.error_notification %>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit %>
   </div>
 <% end %>
 
