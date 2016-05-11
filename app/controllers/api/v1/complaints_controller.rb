@@ -1,5 +1,5 @@
-class Api::V1::ComplaintsController < ApiController
-  #before_action :authenticate_with_token!
+class Api::V1::ComplaintsController < Api::V1::ApiController
+  before_action :authenticate_with_token!
 
   def show
     render json: Complaint.find(params[:id])
